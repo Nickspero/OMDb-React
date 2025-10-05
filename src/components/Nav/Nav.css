@@ -1,0 +1,49 @@
+.navbar {
+    width: 100%;
+    height: 80px;
+    position: relative;
+    border: none;
+    background-color: rgb(102, 102, 102);
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 24px;
+
+    p{
+        color: #000000;
+        padding: 16px;
+        font-size: 18px;
+        border-radius: 32px;
+        font-weight: 200;
+        background-color: #FFCC00;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+}
+.logo__img {
+    height: 100%;
+    max-width: 150px;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+.house {
+    margin-top: 4px;
+    width: 45px;
+    height: 45px;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: #FFCC00;
+    transition: all 300ms ease;
+}
+.house:hover {
+    transform: scale(.9);
+}
+.logo__img:hover {
+    transform: scale(.97);
+}
+
+@media (max-width:576px) {
+    .navbar{
+        p{
+            font-size: 14px;
+        }
+    }
+}
