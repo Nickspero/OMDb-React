@@ -55,7 +55,17 @@ input:hover {
   max-width: 900px;
   font-size: 24px;
   color: #000000;
-  margin: 48px 0px;
+  margin-top: 48px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.results__input{
+  width: 25%;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid#ffcc00;
+  margin: 4px 0px;
 }
 .container {
   width: 100%;

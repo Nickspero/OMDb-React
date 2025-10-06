@@ -8,16 +8,18 @@ import Nav from "../../components/Nav/Nav";
 const Search = () => {
   const navigate = useNavigate()
   const [page, setPage] = useState(1)
-  const resultsTitle = document.querySelector(".results");
   const [fetchData, setFetchData] = useState({});
   const [loading, setLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("one");
   const [rawData, setRawData] = useState()
+  const [searchType, setSearchType] = useState("")
+  const [searchYear, setSearchYear] = useState("")
+  const [firstSearch, setFirstSearch] = useState(false)
 
   async function getData() {
     setLoading(true)
     const { data } = await axios.get(
-      `https://www.omdbapi.com/?i=tt3896198&apikey=406892b9&s=${searchValue}&page=${page}`
+      `https://www.omdbapi.com/?i=tt3896198&apikey=406892b9&s=${searchValue}&page=${page}&y=${searchYear}&type=${searchType}`
     );
     setFetchData(data.Search);
     setRawData(data)
@@ -27,7 +29,7 @@ const Search = () => {
   function search() {
     setLoading(true);
     getData();
-    resultsTitle.innerHTML = `Showing Results for "${searchValue}"`; 
+    setFirstSearch(true); 
   }
 
   function rightArrow() {
@@ -44,7 +46,7 @@ const Search = () => {
 
   useEffect(() => {
     getData();
-  }, [page]);
+  }, [page, searchYear, searchType]);
 
   return (
     <>
@@ -76,7 +78,18 @@ const Search = () => {
           </button>
         </div>
 
-        <div className="results"></div>
+        <div className="results">
+          {firstSearch && <>
+          <p>Showing Search Results for "{searchValue}" </p>
+          <input className="results__input" 
+          type="text" placeholder="Year" 
+          onChange={(e)=>{setSearchYear(e.target.value)}}/>
+          <input className="results__input" 
+          type="text" placeholder="Movie or Series"
+          onChange={(e)=>{setSearchType(e.target.value)}} />
+          </>}
+        </div>
+
         <div className="container">
           {loading ? (
             <div className="loading">
@@ -114,6 +127,7 @@ const Search = () => {
             <img src="/assets/arrowright.png" onClick={()=>rightArrow()} alt="" />
           </div>
         </div>
+
       </section>
       <Footer />
     </>
